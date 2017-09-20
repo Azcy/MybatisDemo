@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zcy.message.mapper">
+    <select id="selectMessage"   resultMap="message">
+        select * from message
+    </select>
+
+    <resultMap id="message" type="com.zcy.message.bean.Message">
+        <id column="ID" property="id" />
+        <result column="COMMAND"  property="command"/>
+        <result column="DESCRIPTION"  property="description"/>
+        <result column="CONTENT"  property="content"/>
+    </resultMap>
+</mapper>

@@ -12,7 +12,7 @@
 			<div class="right">
 				<div class="current">当前位置：<a href="javascript:void(0)" style="color:#6E6E6E;">内容管理</a> &gt; 内容列表</div>
 				<div class="rightCont">
-					<p class="g_title fix">内容列表 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn03" href="#">删 除</a></p>
+					<p class="g_title fix">内容列表 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn03" href="javascript:deleteBatch()">删 除</a></p>
 					<table class="tab1">
 						<tbody>
 						<form action="/message" method="post">
@@ -43,13 +43,13 @@
 								<c:forEach items="${requestScope.list}" var="message" varStatus="status">
 
 									<tr<c:if test="${status.index%2!=0}"> style="background-color: #ECF6EE" </c:if>>
-										<td><input type="checkbox" /></td>
+										<td><input type="checkbox" name="id" value="${message.id}" /></td>
 										<td>${status.index}</td>
 										<td>${message.command}</td>
 										<td>${message.description}</td>
 										<td>
 											<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-											<a href="#">删除</a>
+											<a href="/deleteOne?id=${message.id}">删除</a>
 										</td>
 									</tr>
 								</c:forEach>

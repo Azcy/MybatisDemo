@@ -13,4 +13,13 @@
     <servlet-name>message</servlet-name>
     <url-pattern>/message</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>deleteOne</servlet-name>
+    <servlet-class>com.zcy.message.servlet.DeleteByIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteOne</servlet-name>
+    <url-pattern>/deleteOne</url-pattern>
+  </servlet-mapping>
 </web-app>

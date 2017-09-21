@@ -9,9 +9,18 @@ import java.io.IOException;
 import java.util.List;
 
 public class ListServiceImpl implements ListService {
+    ListDao dao=new ListDaoImpl();
     public List<Message> queryMessage(String COMMAND, String DESCRIPTION) throws IOException {
-        ListDao dao=new ListDaoImpl();
+
         List<Message>list=dao.queryAll(COMMAND,DESCRIPTION);
         return list;
     }
+
+    public void delete(String id) {
+        if (id!=null&&!"".equals(id)){
+            dao.delectById(Integer.parseInt(id));
+
+        }
+    }
+
 }

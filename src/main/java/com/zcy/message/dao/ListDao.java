@@ -8,6 +8,6 @@ import java.util.List;
 public interface ListDao {
     public List<Message> queryAll(String command,String content) throws IOException;
 
-
+    public void delectById(int id);
 
 }

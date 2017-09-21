@@ -15,13 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListDaoImpl implements ListDao{
-    public List<Message> queryAll(String command, String content) throws IOException {
+    public List<Message> queryAll(String command, String description) throws IOException {
         List<Message> list = new ArrayList<Message>();
         List<String> paramList = new ArrayList<String>();
 
         SqlSession session = MyDBUtil.getSqlSession();
         Message message = new Message();
-        list =  session.selectList("com.zcy.message.mapper.selectMessage");
+        message.setCommand(command);
+        message.setDescription(description);
+        list =  session.selectList("com.zcy.message.mapper.selectMessage",message);
         //list.add(message);
 
           /* Connection conn= DBUtil.getConnection();
@@ -55,7 +57,18 @@ public class ListDaoImpl implements ListDao{
             e.printStackTrace();
         }*/
 
+          session.close();
 
         return list;
     }
+
+    public void delectById(int id) {
+        try {
+            SqlSession session=MyDBUtil.getSqlSession();
+            session.delete("com.zcy.message.mapper.deleteById",id);
+            session.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+}

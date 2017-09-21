@@ -3,14 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zcy.message.mapper">
-    <select id="selectMessage"   resultMap="message">
-        select * from message
+    <select id="selectMessage"  parameterType="com.zcy.message.bean.Message"  resultMap="message">
+        select * from message WHERE  1=1
+        <if test="command!=null and !&quot;&quot;.equals(command.trim()) " >AND  COMMAND=#{command}</if>
+        <if test="description!=null and !&quot;&quot;.equals(description.trim()) " >AND  DESCRIPTION like '%' #{description} '%'</if>
+
     </select>
 
-    <resultMap id="message" type="com.zcy.message.bean.Message">
+
+    <delete id="deleteById" parameterType="INT">
+        DELETE  FROM message WHERE ID=#{_parameter}
+    </delete>
+
+    <delete id="deleteBatch" parameterType="java.util.List">
+        DELETE FROM message WHERE ID IN (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </delete>
+
+    <resultMap id="message" type="com.zcy.message.bean.Message" >
         <id column="ID" property="id" />
         <result column="COMMAND"  property="command"/>
         <result column="DESCRIPTION"  property="description"/>
         <result column="CONTENT"  property="content"/>
     </resultMap>
+
+
 </mapper>

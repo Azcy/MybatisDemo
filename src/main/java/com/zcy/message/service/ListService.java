@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ListService {
     public List<Message>queryMessage(String COMMAND,String DESCRIPTION) throws IOException;
+    public void delete(String id);
 }

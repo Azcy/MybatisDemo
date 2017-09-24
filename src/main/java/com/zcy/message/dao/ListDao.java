@@ -4,10 +4,31 @@ import com.zcy.message.bean.Message;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface ListDao {
-    public List<Message> queryAll(String command,String content) throws IOException;
+    /**
 
+
+
+    /**
+     * 单条删除
+     */
     public void delectById(int id);
+
+
+
+    /**
+     * 查询消息的总数量
+     */
+    public int count(Message message);
+
+    public List<Message> queryMessageList(Map<String,Object > objectMap) ;
+
+    public List<Message> queryMessageListByPage(Map<String,Object > objectMap) ;
+
+
+
+
 
 }
